@@ -24,6 +24,7 @@ public class Main {
                             "(4) - Consultar veículos disponíves \n" +
                             "(5) - Consultar veículos alugados \n" +
                             "(6) - Consultar veículos de luxo \n" +
+                            "(7) - Consultar clientes \n" +
                             "Digite a funcionalidade que deseja realizar: \n");
 
             funcionalidade = scanner.nextLine();
@@ -76,6 +77,16 @@ public class Main {
 
                 case "6":
                     //implementar
+                    break;
+
+                case "7":
+                    for(Cliente clientePF : PessoaFisica.listaClientesPF){
+                        System.out.println(clientePF);
+                    }
+
+                    for(Cliente clientePJ : PessoaJuridica.listaClientesPJ){
+                        System.out.println(clientePJ);
+                    }
                     break;
 
                 default:
