@@ -3,23 +3,30 @@ package Cliente;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PessoaFisica extends Cliente {
+public class PessoaFisica extends Cliente implements CadastroCliente {
 
     private String cpf;
-    public static List<PessoaFisica> listaClientesPF = new ArrayList<>();
+    public static List<Cliente> listaClientesPF = new ArrayList<>();
 
     public PessoaFisica(String nome, String endereco, String telefone, String cpf) {
         super(nome, endereco, telefone);
         this.cpf = cpf;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
 
-    public String cadastrarCliente(PessoaFisica cliente) {
+    @Override
+    public String cadastrarCliente(Cliente cliente) {
         this.listaClientesPF.add(cliente);
         return "Cliente PF cadastrado";
     }
 
-    public String getCpf() {
-        return cpf;
+    @Override
+    public String toString() {
+        return super.toString() + " PessoaFisica{" +
+                "cpf='" + cpf + '\'' +
+                "} " ;
     }
 }
