@@ -2,7 +2,7 @@
 Projeto final do módulo Programação Orientada a Objetos I
 
 ## Grupo 2: 
-- Daniela Marcilio Dmarc
+- Daniela Marcilio 
 - Ezequias Lima
 - Igor Eloi
 - Ronaldo Di George
