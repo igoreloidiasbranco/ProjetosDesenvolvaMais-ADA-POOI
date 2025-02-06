@@ -2,7 +2,7 @@
 Projeto final do módulo Programação Orientada a Objetos I
 
 ## Grupo 2: 
-- Daniela Marcilio
+- Daniela Marcilio 
 - Ezequias Lima
 - Igor Eloi
 - Ronaldo Di George
@@ -49,3 +49,4 @@ O sistema deve permitir as seguintes funcionalidades:
 - Listagem de veículos disponíveis.
 - Listagem de veículos alugados.
 - Listagem de veículos de luxo.
+
