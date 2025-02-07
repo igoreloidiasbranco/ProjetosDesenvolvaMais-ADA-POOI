@@ -1,4 +1,4 @@
-package com.locadora.sistema;
+package LocacaoVeiculos;
 
 import com.locadora.clientes.Cliente;
 import com.locadora.locacao.Locacao;
