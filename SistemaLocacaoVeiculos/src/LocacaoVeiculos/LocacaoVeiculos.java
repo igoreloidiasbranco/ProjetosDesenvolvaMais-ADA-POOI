@@ -13,15 +13,15 @@ public class SistemaLocacao {
     private List<Cliente> clientes = new ArrayList<>();c
     private List<Locacao> locacoes = new ArrayList<>();
 
-    public void cadastrarVeiculo(Veiculo veiculo) {
+ public void cadastrarVeiculo(Veiculo veiculo) {
         veiculos.add(veiculo);
     }
 
-    public void cadastrarCliente(Cliente cliente) {
+ public void cadastrarCliente(Cliente cliente) {
         clientes.add(cliente);
     }
 
-    public Cliente buscarClientePorDocumento(String documento) {
+  public Cliente buscarClientePorDocumento(String documento) {
         for (Cliente cliente : clientes) {
             if (cliente.getDocumento().equals(documento)) {
                 return cliente;
@@ -30,7 +30,7 @@ public class SistemaLocacao {
         return null;
     }
 
-    public Veiculo buscarVeiculoPorPlaca(String placa) {
+  public Veiculo buscarVeiculoPorPlaca(String placa) {
         for (Veiculo veiculo : veiculos) {
             if (veiculo.getPlaca().equals(placa)) {
                 return veiculo;
@@ -73,5 +73,7 @@ public class SistemaLocacao {
             }
         }
         return luxo;
+    }
+}
     }
 }
