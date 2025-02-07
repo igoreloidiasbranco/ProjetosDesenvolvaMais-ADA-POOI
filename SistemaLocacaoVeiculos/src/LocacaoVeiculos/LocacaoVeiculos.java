@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SistemaLocacao {
+public class LocacaoVeiculos {
     private List<Veiculo> veiculos = new ArrayList<>();
     private List<Cliente> clientes = new ArrayList<>();c
     private List<Locacao> locacoes = new ArrayList<>();
