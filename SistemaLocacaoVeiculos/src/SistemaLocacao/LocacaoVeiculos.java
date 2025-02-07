@@ -72,6 +72,7 @@ public class LocacaoVeiculos {
                 luxo.add(veiculo);
             }
         }
+
         return luxo;
     }
 }
