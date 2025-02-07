@@ -10,6 +10,10 @@ public class CarroPremium extends br.com.locadora.model.Veiculo {
         this.servicosLuxo = servicosLuxo;
     }
 
+    public CarroPremium(String modelo, String placa, double valorDiaria, boolean disponibilidade) {
+        super();
+    }
+
     public List<ServicoLuxo> getServicosLuxo() { return servicosLuxo; }
     public void setServicosLuxo(List<ServicoLuxo> servicosLuxo) { this.servicosLuxo = servicosLuxo; }
 

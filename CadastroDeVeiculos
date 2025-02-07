@@ -1,0 +1,133 @@
+package br.com.locadora.model;
+
+public class Veiculo {
+    private String modelo;
+    private String placa;
+    private double valorDiaria;
+    private boolean disponibilidade;
+
+    public Veiculo(String modelo, String placa, double valorDiaria, boolean disponibilidade) {
+        this.modelo = modelo;
+        this.placa = placa;
+        this.valorDiaria = valorDiaria;
+        this.disponibilidade = disponibilidade;
+    }
+
+    public String getModelo() { return modelo; }
+    public String getPlaca() { return placa; }
+    public double getValorDiaria() { return valorDiaria; }
+    public boolean isDisponibilidade() { return disponibilidade; }
+
+    public void setDisponibilidade(boolean disponibilidade) { this.disponibilidade = disponibilidade; }
+
+    @Override
+    public String toString() {
+        return "Modelo: " + modelo + ", Placa: " + placa + ", Valor Diária: R$ " + valorDiaria + ", Disponível: " + disponibilidade;
+    }
+}
+
+
+package br.com.locadora.model;
+
+public class CarroComum extends br.com.locadora.model.Veiculo {
+    public CarroComum(String modelo, String placa, double valorDiaria, boolean disponibilidade) {
+        super(modelo, placa, valorDiaria, disponibilidade);
+    }
+}
+
+
+package br.com.locadora.model;
+
+import java.util.List;
+
+public class CarroPremium extends br.com.locadora.model.Veiculo {
+    private List<ServicoLuxo> servicosLuxo;
+
+    public CarroPremium(String modelo, String placa, double valorDiaria, boolean disponibilidade, List<ServicoLuxo> servicosLuxo) {
+        super(modelo, placa, valorDiaria, disponibilidade);
+        this.servicosLuxo = servicosLuxo;
+    }
+
+    public List<ServicoLuxo> getServicosLuxo() { return servicosLuxo; }
+    public void setServicosLuxo(List<ServicoLuxo> servicosLuxo) { this.servicosLuxo = servicosLuxo; }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", Serviços de Luxo: " + servicosLuxo;
+    }
+}
+
+package br.com.locadora.service;
+
+import br.com.locadora.model.Veiculo;
+import java.util.ArrayList;
+import java.util.List;
+
+public class VeiculoService {
+    private List<Veiculo> veiculos = new ArrayList<>();
+
+    public void adicionarVeiculo(Veiculo veiculo) {
+        veiculos.add(veiculo);
+    }
+
+    public List<Veiculo> listarVeiculos() {
+        return veiculos;
+    }
+}
+
+
+package br.com.locadora.model;
+
+public enum ServicoLuxo {
+    MOTORISTA_PARTICULAR,
+    INTERNET_WIFI,
+    ASSISTENCIA_VIP,
+    BEBIDAS_CORTESIA,
+    SISTEMA_MULTIMIDIA
+}
+
+
+package br.com.locadora;
+
+import br.com.locadora.model.CarroComum;
+import br.com.locadora.model.CarroPremium;
+import br.com.locadora.model.ServicoLuxo;
+import br.com.locadora.service.VeiculoService;
+
+import java.util.Arrays;
+
+public class MainTeste {
+    public static void main(String[] args) {
+        VeiculoService service = new VeiculoService();
+
+        // Criando carros comuns (Onix, T-Cross, HB20)
+        CarroComum onix = new CarroComum("Onix", "ABC-1234", 120.0, true);
+        CarroComum tCross = new CarroComum("T-Cross", "DEF-5678", 150.0, true);
+        CarroComum hb20 = new CarroComum("HB20 Hyundai", "GHI-9012", 110.0, true);
+
+        // Criando carros de luxo (Ferrari, Porsche, BMW)
+        CarroPremium ferrari = new CarroPremium("Ferrari", "JKL-3456", 800.0, true,
+                Arrays.asList(ServicoLuxo.MOTORISTA_PARTICULAR, ServicoLuxo.INTERNET_WIFI));
+
+        CarroPremium porsche = new CarroPremium("Porsche", "MNO-7890", 750.0, true,
+                Arrays.asList(ServicoLuxo.BEBIDAS_CORTESIA, ServicoLuxo.SISTEMA_MULTIMIDIA));
+
+        CarroPremium bmw = new CarroPremium("BMW", "PQR-1122", 700.0, true,
+                Arrays.asList(ServicoLuxo.ASSISTENCIA_VIP, ServicoLuxo.INTERNET_WIFI, ServicoLuxo.SISTEMA_MULTIMIDIA));
+
+        // Adicionando os veículos ao serviço
+        service.adicionarVeiculo(onix);
+        service.adicionarVeiculo(tCross);
+        service.adicionarVeiculo(hb20);
+        service.adicionarVeiculo(ferrari);
+        service.adicionarVeiculo(porsche);
+        service.adicionarVeiculo(bmw);
+
+        // Exibindo os veículos cadastrados
+        System.out.println("=== Veículos Cadastrados ===");
+        for (var veiculo : service.listarVeiculos()) {
+            System.out.println(veiculo);
+        }
+    }
+}
+

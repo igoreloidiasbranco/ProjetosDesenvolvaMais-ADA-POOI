@@ -1,5 +1,6 @@
 package br.com.locadora.service;
 
+import br.com.locadora.model.CarroPremium;
 import br.com.locadora.model.Veiculo;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,5 +14,8 @@ public class VeiculoService {
 
     public List<Veiculo> listarVeiculos() {
         return veiculos;
+    }
+
+    public void cadastrarVeiculo(CarroPremium carroPremium) {
     }
 }

@@ -1,7 +1,12 @@
 import Cliente.Cliente;
 import Cliente.PessoaFisica;
 import Cliente.PessoaJuridica;
+import br.com.locadora.model.CarroPremium;
+import br.com.locadora.model.Veiculo;
+import br.com.locadora.service.VeiculoService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -31,8 +36,45 @@ public class Main {
 
             switch (funcionalidade) {
                 case "1":
-                    //implementar
-                    break;
+
+                    class CadastroVeiculos {
+                        public static void main(String[] args) {
+                            Scanner scanner = new Scanner(System.in);
+                            VeiculoService veiculoService = new VeiculoService();
+
+                            System.out.println("=== Cadastro de Veículo ===");
+                            System.out.print("Digite o modelo do veículo: ");
+                            String modelo = scanner.nextLine();
+
+                            System.out.print("Digite a placa do veículo: ");
+                            String placa = scanner.nextLine();
+
+                            System.out.print("Digite o valor da diária: ");
+                            double valorDiaria = scanner.nextDouble();
+                            scanner.nextLine(); // Consumir a quebra de linha
+
+                            System.out.print("O veículo é premium? (S/N): ");
+                            String tipoVeiculo = scanner.nextLine().toUpperCase();
+
+                            if (tipoVeiculo.equals("S")) {
+                                List<String> servicosLuxo = new ArrayList<>();
+                                System.out.println("Digite os serviços de luxo separados por vírgula (ex: ASSISTENCIA_VIP, INTERNET_WIFI, SISTEMA_MULTIMIDIA): ");
+                                String servicos = scanner.nextLine();
+                                for (String servico : servicos.split(",")) {
+                                    servicosLuxo.add(servico.trim());
+                                }
+
+                                CarroPremium carroPremium = new CarroPremium(modelo, placa, valorDiaria, true);
+                                veiculoService.cadastrarVeiculo(carroPremium);
+                                System.out.println("Carro premium cadastrado com sucesso!");
+                            } else {
+                                CarroPremium carroComum = new CarroPremium(modelo, placa, valorDiaria, true);
+                                veiculoService.cadastrarVeiculo(carroComum);
+                                System.out.println("Carro comum cadastrado com sucesso!");
+                            }
+                        }
+                    }
+
 
                 case "2":
                     System.out.print("Digite o nome: ");
