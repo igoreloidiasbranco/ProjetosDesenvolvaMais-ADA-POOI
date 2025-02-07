@@ -13,6 +13,10 @@ public class Veiculo {
         this.disponibilidade = disponibilidade;
     }
 
+    public Veiculo() {
+
+    }
+
     public String getModelo() { return modelo; }
     public String getPlaca() { return placa; }
     public double getValorDiaria() { return valorDiaria; }
