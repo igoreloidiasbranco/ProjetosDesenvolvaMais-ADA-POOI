@@ -10,7 +10,7 @@ import java.util.List;
 
 public class LocacaoVeiculos {
     private List<Veiculo> veiculos = new ArrayList<>();
-    private List<Cliente> clientes = new ArrayList<>();c
+    private List<Cliente> clientes = new ArrayList<>();
     private List<Locacao> locacoes = new ArrayList<>();
 
     public void cadastrarVeiculo(Veiculo veiculo) {
