@@ -1,6 +1,8 @@
 import Cliente.Cliente;
 import Cliente.PessoaFisica;
 import Cliente.PessoaJuridica;
+import Locadora.Locadora;
+import Veiculo.*;
 
 import java.util.Scanner;
 
@@ -10,6 +12,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String respostaUsuario;
         String funcionalidade;
+        Locadora locadora = new Locadora();
 
         System.out.println();
         System.out.println("----- SISTEMA DE LOCAÇÂO DE VEÌCULOS -----");
@@ -31,8 +34,44 @@ public class Main {
 
             switch (funcionalidade) {
                 case "1":
-                    //implementar
+                    System.out.println("Digite o tipo de veículo (CarroComum, CarroPremium, SUV, Moto, Caminhao):");
+                    String tipoVeiculo = scanner.nextLine().toUpperCase();
+
+                    System.out.print("Digite o modelo do veículo: ");
+                    String modelo = scanner.nextLine();
+                    System.out.print("Digite a placa do veículo: ");
+                    String placa = scanner.nextLine();
+                    System.out.print("Digite o valor da diária: ");
+                    double diaria = Double.parseDouble(scanner.nextLine());
+
+                    Veiculo veiculo = null;
+                    switch (tipoVeiculo) {
+                        case "CARROCOMUM":
+                            veiculo = new CarroComum(modelo, placa, diaria);
+                            break;
+                        case "CARROPREMIUM":
+                            veiculo = new CarroPremium(modelo, placa, diaria);
+                            break;
+                        case "SUV":
+                            veiculo = new SUV(modelo, placa, diaria);
+                            break;
+                        case "MOTO":
+                            veiculo = new Moto(modelo, placa, diaria);
+                            break;
+                        case "CAMINHAO":
+                            veiculo = new Caminhao(modelo, placa, diaria);
+                            break;
+                        default:
+                            System.out.println("Tipo de veículo inválido.");
+                            break;
+                    }
+
+                    if (veiculo != null) {
+                        locadora.cadastrarVeiculo(veiculo);
+                        System.out.println("Veículo cadastrado com sucesso!");
+                    }
                     break;
+
 
                 case "2":
                     System.out.print("Digite o nome: ");
@@ -64,19 +103,58 @@ public class Main {
                     break;
 
                 case "3":
-                    //implementar
+                    do {
+                        System.out.println("Digite (PF) para Pessoa Física ou (PJ) para Pessoa Jurídica");
+                        cliente = scanner.nextLine().toUpperCase();
+                    } while (!(cliente.equals("PF") || cliente.equals("PJ")));
+
+                    System.out.print("Digite o nome do cliente: ");
+                    String nomeCliente = scanner.nextLine();
+
+                    Cliente clienteLocacao;
+
+                    if (cliente.equals("PF")) {
+                        clienteLocacao = PessoaFisica.buscarCliente(nomeCliente);
+                    } else {
+                        clienteLocacao = PessoaJuridica.buscarCliente(nomeCliente);
+                    }
+
+                    if (clienteLocacao != null) {
+                        System.out.print("Digite o modelo do veículo para locação: ");
+                        String modeloLocacao = scanner.nextLine();
+                        Veiculo veiculoLocacao = locadora.buscarVeiculo(modeloLocacao);
+
+                        if (veiculoLocacao != null && veiculoLocacao.isDisponibilidade()) {
+                            System.out.print("Digite o número de dias para locação: ");
+                            int dias = Integer.parseInt(scanner.nextLine());
+
+                            locadora.realizarLocacao(clienteLocacao, veiculoLocacao, dias);
+                            System.out.println("Locação realizada com sucesso!");
+                            System.out.println("Valor total: " + veiculoLocacao.calcularCusto(dias));
+                            if (veiculoLocacao instanceof CarroPremium) {
+                                ((CarroPremium) veiculoLocacao).oferecerServicoPremium();
+                            }
+                        } else {
+                            System.out.println("Veículo não encontrado ou não disponível.");
+                        }
+                    } else {
+                        System.out.println("Cliente não encontrado.");
+                    }
                     break;
 
                 case "4":
-                    //implementar
+                    System.out.println("Veículos disponíveis:");
+                    locadora.exibirVeiculosDisponiveis();
                     break;
 
                 case "5":
-                    //implementar
+                    System.out.println("Veículos alugados:");
+                    locadora.exibirVeiculosAlugados();
                     break;
 
                 case "6":
-                    //implementar
+                    System.out.println("Veículos de luxo:");
+                    locadora.exibirVeiculosDeLuxo();
                     break;
 
                 case "7":
