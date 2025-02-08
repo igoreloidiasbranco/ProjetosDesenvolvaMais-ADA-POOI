@@ -36,10 +36,6 @@ public class Main {
 
             switch (funcionalidade) {
                 case "1":
-
-                    class CadastroVeiculos {
-                        public static void main(String[] args) {
-                            Scanner scanner = new Scanner(System.in);
                             VeiculoService veiculoService = new VeiculoService();
 
                             System.out.println("=== Cadastro de Veículo ===");
@@ -72,8 +68,6 @@ public class Main {
                                 veiculoService.cadastrarVeiculo(carroComum);
                                 System.out.println("Carro comum cadastrado com sucesso!");
                             }
-                        }
-                    }
 
 
                 case "2":
