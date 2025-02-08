@@ -29,4 +29,13 @@ public class PessoaJuridica extends Cliente implements CadastroCliente{
                 "cnpj='" + cnpj + '\'' +
                 "} " ;
     }
+
+    public static Cliente buscarCliente(String nomeCliente) {
+        for(Cliente cliente : listaClientesPJ) {
+            if(cliente.getNome().equalsIgnoreCase(nomeCliente)) {
+                return cliente;
+            }
+        }
+        return null;
+    }
 }

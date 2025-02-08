@@ -29,4 +29,14 @@ public class PessoaFisica extends Cliente implements CadastroCliente {
                 "cpf='" + cpf + '\'' +
                 "} " ;
     }
+
+
+    public static Cliente buscarCliente(String nomeCliente) {
+        for(Cliente cliente : listaClientesPF) {
+            if (cliente.getNome().equalsIgnoreCase(nomeCliente)){
+                return cliente;
+            }
+        }
+        return null;
+    }
 }
